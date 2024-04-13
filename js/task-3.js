@@ -18,6 +18,3 @@ formElement.addEventListener("submit", (event) => {
     nameElement.textContent = inputElement.value;
   }
 });
-
-// При пустому рядку має писати що це анонімне
-// При вписанні чогось то це має замінити анонімус
