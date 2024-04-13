@@ -27,8 +27,11 @@ const images = [
 const galleries = document.querySelectorAll(".gallery");
 
 galleries.forEach((gallery) => {
+  const fragment = document.createDocumentFragment();
+
   images.forEach((image) => {
-    const liElement1 = document.createElement("li");
+    const liElement = document.createElement("li");
+    liElement.classList.add("li-class-foto");
 
     const img = document.createElement("img");
     img.src = image.url;
@@ -37,9 +40,9 @@ galleries.forEach((gallery) => {
     img.height = 300;
     img.classList.add("image-class");
 
-    liElement1.appendChild(img);
-    liElement1.classList.add("li-class-foto");
-
-    gallery.appendChild(liElement1);
+    liElement.appendChild(img);
+    fragment.appendChild(liElement);
   });
+
+  gallery.appendChild(fragment);
 });

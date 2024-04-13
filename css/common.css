@@ -153,8 +153,7 @@ ul {
   border-radius: 8px;
   padding: 32px;
   width: 486px;
-  height: 104px;
-  margin-bottom: 16px;
+  height: 134px;
 }
 .new-div {
   background-color: #f6f6fe;
@@ -162,4 +161,37 @@ ul {
   padding: 32px;
   width: 486px;
   height: 134px;
+}
+
+.span_button_class {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+
+.button1 {
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 120px;
+  height: 40px;
+  background-color: #4e75ff;
+}
+
+.button2 {
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 120px;
+  height: 40px;
+  background-color: #ff4e4e;
+}
+
+.input_num {
+  border: 1px solid #808080;
+  border-radius: 8px;
+  padding: 8px 72px;
+  width: 90px;
+  height: 40px;
 }
