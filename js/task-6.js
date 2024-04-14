@@ -1,69 +1,48 @@
-const app = {
-  getRandomHexColor() {
-    return `#${Math.floor(Math.random() * 16777215)
-      .toString(16)
-      .padStart(6, "0")}`;
-  },
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, "0")}`;
+}
 
-  inputElement: document.querySelector(".input_num"),
-  inputButtonCreate: document.querySelector(".button1"),
-  inputButtonDestroy: document.querySelector(".button2"),
-  smallBox: [],
-  newDiv: null,
+const inputElement = document.querySelector(".input_num");
+const createButton = document.querySelector(".buttonCreate");
+const destroyButton = document.querySelector(".buttonDestroy");
+const boxesContainer = document.getElementById("boxes");
+let smallBoxes = [];
 
-  createBoxes(amount) {
-    if (this.newDiv) {
-      this.newDiv.remove();
-    }
+function createBoxes(amount) {
+  boxesContainer.innerHTML = "";
+  smallBoxes = [];
 
-    this.smallBox = [];
-
-    if (amount >= 1 && amount <= 100) {
-      const fragment = document.createDocumentFragment();
-
-      const boxElements = Array.from({ length: amount }, (_, index) => {
-        const size = 30 + (index % 7) * 10;
-        if (size > 100) return null;
-        const smallBoxes = document.createElement("div");
-        smallBoxes.classList.add("small_boxes_css");
-        smallBoxes.style.backgroundColor = this.getRandomHexColor();
-        smallBoxes.style.width = `${size}px`;
-        smallBoxes.style.height = `${size}px`;
-        return smallBoxes;
-      }).filter((box) => box !== null);
-
-      boxElements.forEach((box) => {
-        fragment.appendChild(box);
-        this.smallBox.push(box);
-      });
-
-      this.newDiv = document.createElement("div");
-      this.newDiv.classList.add("new-div");
-      this.newDiv.appendChild(fragment);
-      document.body.appendChild(this.newDiv);
-
-      this.inputElement.value = "";
-    } else {
-      console.log("Please enter a number between 0 and 100.");
-    }
-  },
-
-  destroyBoxes() {
-    this.smallBox.forEach((box) => {
-      box.remove();
+  if (amount >= 1 && amount <= 100) {
+    const fragment = document.createDocumentFragment();
+    Array.from({ length: amount }).forEach((_, index) => {
+      const size = 30 + (index % 7) * 10;
+      if (size > 100) return;
+      const smallBox = document.createElement("div");
+      smallBox.classList.add("small_box");
+      smallBox.style.backgroundColor = getRandomHexColor();
+      smallBox.style.width = `${size}px`;
+      smallBox.style.height = `${size}px`;
+      fragment.appendChild(smallBox);
+      smallBoxes.push(smallBox);
     });
-    this.smallBox = [];
-  },
+    // Додаємо клас прямо до контейнера після додавання фрагменту
+    boxesContainer.appendChild(fragment);
+    boxesContainer.classList.add("new-div");
+  }
+}
 
-  init() {
-    this.inputButtonCreate.addEventListener("click", () => {
-      const amount = parseInt(this.inputElement.value);
-      this.createBoxes(amount);
-    });
-    this.inputButtonDestroy.addEventListener("click", () =>
-      this.destroyBoxes()
-    );
-  },
-};
+function destroyBoxes() {
+  boxesContainer.innerHTML = "";
+  smallBoxes = [];
+}
 
-app.init();
+createButton.addEventListener("click", function () {
+  const amount = parseInt(inputElement.value);
+  createBoxes(amount);
+});
+
+destroyButton.addEventListener("click", function () {
+  destroyBoxes();
+});

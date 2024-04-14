@@ -141,20 +141,15 @@ ul {
   overflow: auto;
 }
 
-.small_boxes_css {
+.small_box {
   margin-right: 10px;
   margin-bottom: 10px;
   box-sizing: border-box;
   border: 1px solid black;
+  background-color: #f6f6fe;
 }
 
-.div_element {
-  background-color: #f6f6fe;
-  border-radius: 8px;
-  padding: 32px;
-  width: 486px;
-  height: 134px;
-}
+.div_element,
 .new-div {
   background-color: #f6f6fe;
   border-radius: 8px;
@@ -172,19 +167,19 @@ ul {
   color: #fff;
 }
 
-.button1 {
+.buttonCreate,
+.buttonDestroy {
   border-radius: 8px;
   padding: 8px 16px;
   width: 120px;
   height: 40px;
+}
+
+.buttonCreate {
   background-color: #4e75ff;
 }
 
-.button2 {
-  border-radius: 8px;
-  padding: 8px 16px;
-  width: 120px;
-  height: 40px;
+.buttonDestroy {
   background-color: #ff4e4e;
 }
 
