@@ -8,34 +8,32 @@ const inputElement = document.querySelector(".input_num");
 const createButton = document.querySelector(".buttonCreate");
 const destroyButton = document.querySelector(".buttonDestroy");
 const boxesContainer = document.getElementById("boxes");
-let smallBoxes = [];
 
 function createBoxes(amount) {
-  boxesContainer.innerHTML = "";
-  smallBoxes = [];
+  destroyBoxes();
 
-  if (amount >= 1 && amount <= 100) {
-    const fragment = document.createDocumentFragment();
-    Array.from({ length: amount }).forEach((_, index) => {
-      const size = 30 + (index % 7) * 10;
-      if (size > 100) return;
-      const smallBox = document.createElement("div");
-      smallBox.classList.add("small_box");
-      smallBox.style.backgroundColor = getRandomHexColor();
-      smallBox.style.width = `${size}px`;
-      smallBox.style.height = `${size}px`;
-      fragment.appendChild(smallBox);
-      smallBoxes.push(smallBox);
-    });
-    // Додаємо клас прямо до контейнера після додавання фрагменту
-    boxesContainer.appendChild(fragment);
-    boxesContainer.classList.add("new-div");
+  if (amount < 1 || amount > 100) {
+    return;
   }
+
+  const fragment = document.createDocumentFragment();
+
+  for (let i = 0; i < amount; i++) {
+    const size = 30 + i * 10;
+    const smallBox = document.createElement("div");
+    smallBox.classList.add("small_box");
+    smallBox.style.backgroundColor = getRandomHexColor();
+    smallBox.style.width = `${size}px`;
+    smallBox.style.height = `${size}px`;
+    fragment.appendChild(smallBox);
+  }
+
+  boxesContainer.appendChild(fragment);
+  boxesContainer.classList.add("new-div");
 }
 
 function destroyBoxes() {
   boxesContainer.innerHTML = "";
-  smallBoxes = [];
 }
 
 createButton.addEventListener("click", function () {
